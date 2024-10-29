@@ -13,7 +13,7 @@ app = FastAPI()
 
 MONGO_USER = os.getenv("MONGO_USER")
 MONGO_PASSWORD = os.getenv("MONGO_PASSWORD")
-MONGO_DETAILS = f"mongodb+srv://{MONGO_USER}:{MONGO_PASSWORD}@dine-n-shine-cluster.1b1o3.mongodb.net/dine-n-shine?retryWrites=true&w=majority"
+MONGO_DETAILS = f"mongodb+srv://{MONGO_USER}:<{MONGO_PASSWORD}>@dine-n-shine-cluster.1b1o3.mongodb.net/"
 
 client = AsyncIOMotorClient(MONGO_DETAILS)
 database = client["dine-n-shine"]
