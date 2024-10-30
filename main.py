@@ -15,8 +15,14 @@ MONGO_USER = os.getenv("MONGO_USER", "dineAdmin")
 MONGO_PASSWORD = os.getenv("MONGO_PASSWORD")
 MONGO_DETAILS = f"mongodb+srv://dineAdmin:<dine-n-shine>@dine-n-shine-cluster.1b1o3.mongodb.net/?retryWrites=true&w=majority&appName=dine-n-shine-cluster"
 
+try:
+    client = AsyncIOMotorClient(MONGO_DETAILS)
+    client.admin.command('ping')  # Verifies the connection
+    print("MongoDB connection successful!")
+except Exception as e:
+    print("MongoDB connection error:", e)
 
-client = AsyncIOMotorClient(MONGO_DETAILS)
+# client = AsyncIOMotorClient(MONGO_DETAILS)
 database = client["dine-n-shine"]
 order_collection = database["orders"]
 
