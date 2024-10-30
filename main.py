@@ -13,7 +13,7 @@ app = FastAPI()
 
 MONGO_USER = os.getenv("MONGO_USER", "dineAdmin")
 MONGO_PASSWORD = os.getenv("MONGO_PASSWORD")
-MONGO_DETAILS = f"mongodb+srv://dineAdmin:dine-n-shine@dine-n-shine-cluster.1b1o3.mongodb.net/?retryWrites=true&w=majority&appName=dine-n-shine-cluster"
+MONGO_DETAILS = f"mongodb+srv://dineAdmin:<dine-n-shine>@dine-n-shine-cluster.1b1o3.mongodb.net/?retryWrites=true&w=majority&appName=dine-n-shine-cluster"
 
 
 client = AsyncIOMotorClient(MONGO_DETAILS)
@@ -52,6 +52,10 @@ def order_serializer(order) -> dict:
             for item in order.get("items", [])
         ],
     }
+
+@app.get("/")
+async def home():
+    return "welcome to dine-n-shine"
 
 @app.get("/orders")
 async def get_orders():
