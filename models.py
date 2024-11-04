@@ -26,6 +26,13 @@ class OrdersResponse(BaseModel):
 
 class DiscriptionPoint(BaseModel):
     point:str
+class MenuItem(BaseModel):
+    dish: str
+
+class Menu(BaseModel):
+    lunch: list[MenuItem]
+    dinner: list[MenuItem]
+
 class Service(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     img:str
@@ -34,5 +41,6 @@ class Service(BaseModel):
     cost:str
     distription:Optional[List[dict]]
     date_added:datetime=Field(default_factory=datetime.utcnow)
+    menu:Menu
 
     
